@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.button.MaterialButton
@@ -57,6 +58,13 @@ class MenuBottomSheet : DialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        val btnVoltar = view.findViewById<ImageButton>(R.id.btnVoltar)
+
+        btnVoltar.setOnClickListener {
+            dismiss()
+        }
+
         val txtDevice = view.findViewById<TextView>(R.id.txtDevice)
         val btnAction = view.findViewById<MaterialButton>(R.id.btnAction)
 
