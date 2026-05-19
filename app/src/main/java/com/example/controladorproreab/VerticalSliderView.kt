@@ -51,10 +51,10 @@ class VerticalSliderView(context: Context, attrs: AttributeSet?) : View(context,
         canvas.drawLine(x, y, x, bottom, activePaint)
         canvas.drawCircle(x, y, 18f, thumbPaint)
 
-        canvas.drawText("200CM", x + 25, top + 10, textPaint)
-        canvas.drawText("80CM", x + 25, bottom + 10, textPaint)
+        canvas.drawText("100CM", x + 25, top + 10, textPaint)
+        canvas.drawText("45CM", x + 25, bottom + 10, textPaint)
 
-        val currentHeight = (80 + (120 * progress)).toInt()
+        val currentHeight = (45 + (45 * progress)).toInt()
         canvas.drawText("${currentHeight}CM", x + 25, y + 10, textPaint)
     }
 
@@ -73,5 +73,5 @@ class VerticalSliderView(context: Context, attrs: AttributeSet?) : View(context,
         return true
     }
 
-    fun getHeightValue(): Int = (80 + (120 * progress)).toInt()
+    fun getHeightValue(): Int = (45 + (45 * progress)).toInt()
 }

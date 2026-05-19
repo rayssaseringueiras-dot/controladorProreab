@@ -2,6 +2,7 @@ package com.example.controladorproreab
 
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothSocket
 import java.io.IOException
 import java.util.UUID
@@ -12,8 +13,10 @@ object BluetoothManager {
         BluetoothAdapter.getDefaultAdapter()
 
     var socket: BluetoothSocket? = null
+        private set
 
     var connectedDeviceName: String = ""
+        private set
 
     private val UUID_SPP: UUID =
         UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
@@ -32,35 +35,68 @@ object BluetoothManager {
             val bondedDevices = adapter.bondedDevices
             if (bondedDevices.isEmpty()) return false
 
-            // Procura primeiro pelo atuador
-            val device = bondedDevices.firstOrNull {
-                it.name == "ESP32" ||
-                        it.name == "HC-05" ||
-                        it.name == "HC-06"
+            val device = bondedDevices.firstOrNull { bluetoothDevice ->
+                val name = bluetoothDevice.name ?: ""
+                name == "ESP32" ||
+                        name == "ESP32_Atuador" ||
+                        name == "HC-05" ||
+                        name == "HC-06"
             } ?: bondedDevices.first()
 
+            disconnect() // Fecha conexão anterior, se existir
 
-            socket?.close() // Isso vai fechar a anterior
+            adapter.cancelDiscovery() // Cancela descoberta antes de conectar
 
-//            adapter.cancelDiscovery() // Cancela descoberta antes de conectar    SE DER ERRO MUDAR AQUI
+            socket = device.createRfcommSocketToServiceRecord(UUID_SPP) // Tenta conectar usando o UUID padrão do Bluetooth clássico (SPP)
+            socket?.connect()
 
-            socket = device.createRfcommSocketToServiceRecord(UUID_SPP)  // Cria socket
-
-            socket?.connect() // Conecta
-
-            connectedDeviceName = device.name ?: "Dispositivo Bluetooth"
+            connectedDeviceName = device.name ?: "Dispositivo Bluetooth" // Salva o nome do dispositivo conectado
 
             return true
+
         } catch (e: Exception) {
             e.printStackTrace()
-            disconnect()
-            return false
+            try {
+                disconnect()
+
+                val adapter = bluetoothAdapter ?: return false
+                val bondedDevices = adapter.bondedDevices
+
+                val device = bondedDevices.firstOrNull { bluetoothDevice ->
+                    val name = bluetoothDevice.name ?: ""
+                    name == "ESP32" ||
+                            name == "ESP32_Atuador" ||
+                            name == "HC-05" ||
+                            name == "HC-06"
+                } ?: return false
+
+                val method = BluetoothDevice::class.java.getMethod(
+                    "createRfcommSocket",
+                    Int::class.javaPrimitiveType
+                )
+
+                socket = method.invoke(device, 1) as BluetoothSocket
+                socket?.connect()
+
+                connectedDeviceName =
+                    device.name ?: "Dispositivo Bluetooth"
+
+                return true
+
+            } catch (e2: Exception) {
+                e2.printStackTrace()
+                disconnect()
+                return false
+            }
         }
     }
 
     fun send(command: String) {
         try {
-            socket?.outputStream?.write(command.toByteArray())
+            if (isConnected()) {
+                socket?.outputStream?.write(command.toByteArray())
+                socket?.outputStream?.flush()
+            }
         } catch (e: IOException) {
             e.printStackTrace()
         }
@@ -83,6 +119,8 @@ object BluetoothManager {
 
         if (!adapter.isEnabled) return emptyList()
 
-        return adapter.bondedDevices.map { it.name ?: "Sem nome" }
+        return adapter.bondedDevices.map { device ->
+            device.name ?: "Sem nome"
+        }
     }
 }
