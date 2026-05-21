@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 class ControladorActivity : AppCompatActivity() {
 
     lateinit var btnMenu: ImageView
-//    lateinit var btnStop: Button
+    lateinit var btnStop: Button
     lateinit var arcSlider: ArcSliderView
     lateinit var verticalSlider: VerticalSliderView
     private var lastAngle = 90
@@ -20,7 +20,7 @@ class ControladorActivity : AppCompatActivity() {
         setContentView(R.layout.activity_controlador)
 
         btnMenu = findViewById(R.id.btnMenu)
-//        btnStop = findViewById(R.id.btn_stop)
+        btnStop = findViewById(R.id.btn_stop)
         arcSlider = findViewById(R.id.arcSlider)
         verticalSlider = findViewById(R.id.verticalSlider)
 
@@ -30,9 +30,9 @@ class ControladorActivity : AppCompatActivity() {
         }
 
         // BOTÃO DE STOP PARA PARAR EM CASO DE EMERGENCIA
-//        btnStop.setOnClickListener {
-//            BluetoothManager.send("s")
-//        }
+        btnStop.setOnClickListener {
+            BluetoothManager.send("s")
+        }
     }
 
     fun onAngleChanged(newAngle: Int) {
@@ -41,7 +41,6 @@ class ControladorActivity : AppCompatActivity() {
         } else if (newAngle < lastAngle) {
                 BluetoothManager.send("u")
         }
-
         lastAngle = newAngle
     }
 
@@ -60,7 +59,6 @@ class ControladorActivity : AppCompatActivity() {
             }
 
         }
-
         lastHeight = newHeight
     }
 

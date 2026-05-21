@@ -24,6 +24,13 @@ class ArcSliderView(context: Context, attrs: AttributeSet?) : View(context, attr
         isAntiAlias = true
     }
 
+    private val activePaint = Paint().apply {
+        color = Color.BLUE
+        strokeWidth = 16f
+        strokeCap = Paint.Cap.ROUND
+        isAntiAlias = true
+    }
+
     private val textPaint = Paint().apply {
         color = Color.BLACK
         textSize = 35f
@@ -45,21 +52,20 @@ class ArcSliderView(context: Context, attrs: AttributeSet?) : View(context, attr
         val path = Path()
         path.moveTo(startX, startY)
 
-        // Curva estilo imagem
         path.cubicTo(
             startX + 30f, startY + 180f,
             endX - 120f, endY,
             endX, endY
-        )
+        ) // Essa parte vai arrumar a curva
 
         canvas.drawPath(path, arcPaint)
 
-        // Posição da bolinha na curva
-        val t = 1f - progress
-
+        val t = 1f - progress // Posição da bolinha na curva
+//        val botom = -40f
         val x = cubicBezier(t, startX, startX + 30f, endX - 120f, endX)
         val y = cubicBezier(t, startY, startY + 180f, endY, endY)
 
+//        canvas.drawLine(x, y, x, botom, activePaint)
         canvas.drawCircle(x, y, 20f, thumbPaint)
 
         // Textos fixos

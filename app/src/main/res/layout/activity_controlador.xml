@@ -64,33 +64,31 @@
             android:orientation="horizontal"
             >
 
-            <!-- sobreposição -->
-<!--            <FrameLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"  >-->
+             <!-- sobreposição -->
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"  >
 
-<!--                <Button-->
-<!--                    android:id="@+id/btn_stop"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Parar"-->
-<!--                    android:textColor="#000000"-->
-<!--                    android:layout_marginTop="250dp"-->
-<!--                    android:layout_marginStart="20dp"-->
-<!--                    android:elevation="100dp"-->
-<!--                    app:backgroundTint="#ff5757"-->
-<!--                    />-->
+                <Button
+                    android:id="@+id/btn_stop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Parar X"
+                    android:textColor="@color/black"
+                    android:backgroundTint="#ff5757"
+                    android:layout_marginTop="220dp"
+                    android:layout_marginStart="20dp"
+                    />
 
-<!--            </FrameLayout>-->
+            </FrameLayout>
 
             <!-- SLIDER DE ARCO -->
-
             <com.example.controladorproreab.ArcSliderView
                 android:id="@+id/arcSlider"
                 android:layout_width="320dp"
                 android:layout_height="320dp"
                 android:layout_marginVertical="5dp"
-                android:layout_marginStart="90dp"
+                android:layout_marginStart="-60dp"
                 android:layout_marginTop="12dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtInc" />
@@ -102,7 +100,7 @@
                 android:layout_width="100dp"
                 android:layout_height="300dp"
                 android:layout_marginVertical="5dp"
-                android:layout_marginStart="90dp"
+                android:layout_marginStart="125dp"
                 app:layout_constraintTop_toBottomOf="@id/txtAlt"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="70dp"/>

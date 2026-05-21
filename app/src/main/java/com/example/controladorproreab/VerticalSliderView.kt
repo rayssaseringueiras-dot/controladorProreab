@@ -64,11 +64,9 @@ class VerticalSliderView(context: Context, attrs: AttributeSet?) : View(context,
 
         invalidate()
 
-        // Obtém o valor atual da altura
-        val valorAtual = getHeightValue()
+       val valorAtual = getHeightValue()  // Obtém o valor atual da altura
 
-        // Chama a função da ControladorActivity
-        (context as? ControladorActivity)?.onHeightChanged(valorAtual)
+        (context as? ControladorActivity)?.onHeightChanged(valorAtual) // Chama a função da ControladorActivity
 
         return true
     }
