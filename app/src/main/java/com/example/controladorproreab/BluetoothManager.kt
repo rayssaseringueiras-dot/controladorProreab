@@ -123,4 +123,17 @@ object BluetoothManager {
             device.name ?: "Sem nome"
         }
     }
+
+    fun read(): String? {
+        return try {
+            val buffer = ByteArray(1024)
+
+            val bytes = socket?.inputStream?.read(buffer) ?: return null
+
+            String(buffer, 0, bytes)
+
+        } catch (e: Exception) {
+            null
+        }
+    }
 }
