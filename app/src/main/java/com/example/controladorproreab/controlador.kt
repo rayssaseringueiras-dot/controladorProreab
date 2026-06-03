@@ -9,9 +9,13 @@ class ControladorActivity : AppCompatActivity() {
 
     lateinit var btnMenu: ImageView
     lateinit var btnStop: Button
-    lateinit var btnLiberar: Button
-    lateinit var btnTravar: Button
 
+    lateinit var btnStopInclinação: Button
+    lateinit var btnLiberarAltura: Button
+    lateinit var btnTravarAltura: Button
+    lateinit var btnLiberarInclinacao: Button
+    lateinit var btnTravarInclinacao: Button
+    lateinit var btnZ: Button
     lateinit var arcSlider: ArcSliderView
     lateinit var verticalSlider: VerticalSliderView
     private var lastAngle = 90
@@ -26,27 +30,47 @@ class ControladorActivity : AppCompatActivity() {
 
         btnMenu = findViewById(R.id.btnMenu)
         btnStop = findViewById(R.id.btn_stop)
+        btnStopInclinação = findViewById(R.id.btn_stopInclinação)
         arcSlider = findViewById(R.id.arcSlider)
         verticalSlider = findViewById(R.id.verticalSlider)
-        btnLiberar = findViewById(R.id.btn_liberar)
-        btnTravar = findViewById(R.id.btn_travar)
+        btnLiberarAltura = findViewById(R.id.btn_liberar_Altura)
+        btnTravarAltura = findViewById(R.id.btn_travar_Altura)
+        btnLiberarInclinacao = findViewById(R.id.btn_Liberar_Inclinação)
+        btnTravarInclinacao = findViewById(R.id.btn_travar_inclinação)
+        btnZ = findViewById(R.id.btn_Z)
 
         // ESSA PARTE ABRE O MENU
         btnMenu.setOnClickListener {
             MenuBottomSheet().show(supportFragmentManager, "menu")
         }
 
-        btnTravar.setOnClickListener {
+        btnTravarAltura.setOnClickListener {
             BluetoothManager.send("t")
         }
 
-        btnLiberar.setOnClickListener {
+        btnLiberarAltura.setOnClickListener {
             BluetoothManager.send("l")
+        }
+
+        btnTravarInclinacao.setOnClickListener {
+            BluetoothManager.send("k")
+        }
+
+        btnLiberarInclinacao.setOnClickListener {
+            BluetoothManager.send("j")
+        }
+
+        btnZ.setOnClickListener {
+            BluetoothManager.send("z")
         }
 
         // BOTÃO DE STOP PARA PARAR EM CASO DE EMERGENCIA
         btnStop.setOnClickListener {
             BluetoothManager.send("p")
+        }
+
+        btnStopInclinação.setOnClickListener {
+            BluetoothManager.send("s")
         }
 
     }
