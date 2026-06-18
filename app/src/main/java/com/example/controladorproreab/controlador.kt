@@ -9,13 +9,13 @@ class ControladorActivity : AppCompatActivity() {
 
     lateinit var btnMenu: ImageView
     lateinit var btnStop: Button
-
     lateinit var btnStopInclinação: Button
     lateinit var btnLiberarAltura: Button
     lateinit var btnTravarAltura: Button
     lateinit var btnLiberarInclinacao: Button
     lateinit var btnTravarInclinacao: Button
     lateinit var btnZ: Button
+    lateinit var btnN: Button
     lateinit var arcSlider: ArcSliderView
     lateinit var verticalSlider: VerticalSliderView
     private var lastAngle = 90
@@ -29,49 +29,54 @@ class ControladorActivity : AppCompatActivity() {
         setContentView(R.layout.activity_controlador)
 
         btnMenu = findViewById(R.id.btnMenu)
-        btnStop = findViewById(R.id.btn_stop)
+//        btnStop = findViewById(R.id.btn_stop)
         btnStopInclinação = findViewById(R.id.btn_stopInclinação)
         arcSlider = findViewById(R.id.arcSlider)
         verticalSlider = findViewById(R.id.verticalSlider)
-        btnLiberarAltura = findViewById(R.id.btn_liberar_Altura)
-        btnTravarAltura = findViewById(R.id.btn_travar_Altura)
-        btnLiberarInclinacao = findViewById(R.id.btn_Liberar_Inclinação)
-        btnTravarInclinacao = findViewById(R.id.btn_travar_inclinação)
-        btnZ = findViewById(R.id.btn_Z)
+//        btnLiberarAltura = findViewById(R.id.btn_liberar_Altura)
+//        btnTravarAltura = findViewById(R.id.btn_travar_Altura)
+//        btnLiberarInclinacao = findViewById(R.id.btn_Liberar_Inclinação)
+//        btnTravarInclinacao = findViewById(R.id.btn_travar_inclinação)
+//        btnZ = findViewById(R.id.btn_Z)
+//        btnN = findViewById(R.id.btn_N)
 
         // ESSA PARTE ABRE O MENU
         btnMenu.setOnClickListener {
             MenuBottomSheet().show(supportFragmentManager, "menu")
         }
 
-        btnTravarAltura.setOnClickListener {
-            BluetoothManager.send("t")
-        }
+//        btnTravarAltura.setOnClickListener {
+//            BluetoothManager.send("t")
+//        }
+//
+//        btnLiberarAltura.setOnClickListener {
+//            BluetoothManager.send("l")
+//        }
+//
+//        btnTravarInclinacao.setOnClickListener {
+//            BluetoothManager.send("k")
+//        }
+//
+//        btnLiberarInclinacao.setOnClickListener {
+//            BluetoothManager.send("j")
+//        }
 
-        btnLiberarAltura.setOnClickListener {
-            BluetoothManager.send("l")
-        }
-
-        btnTravarInclinacao.setOnClickListener {
-            BluetoothManager.send("k")
-        }
-
-        btnLiberarInclinacao.setOnClickListener {
-            BluetoothManager.send("j")
-        }
-
-        btnZ.setOnClickListener {
-            BluetoothManager.send("z")
-        }
-
+//        btnZ.setOnClickListener {
+//            BluetoothManager.send("z")
+//        }
+//
+//        btnN.setOnClickListener {
+//            BluetoothManager.send("n")
+//        }
+//
         // BOTÃO DE STOP PARA PARAR EM CASO DE EMERGENCIA
         btnStop.setOnClickListener {
             BluetoothManager.send("p")
         }
-
-        btnStopInclinação.setOnClickListener {
-            BluetoothManager.send("s")
-        }
+//
+//        btnStopInclinação.setOnClickListener {
+//            BluetoothManager.send("s")
+//        }
 
     }
 
