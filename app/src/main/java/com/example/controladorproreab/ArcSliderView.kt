@@ -19,7 +19,7 @@ class ArcSliderView(context: Context, attrs: AttributeSet?) : View(context, attr
     }
 
     private val thumbPaint = Paint().apply {
-        color = Color.LTGRAY
+        color = Color.parseColor("#4A4AE0")
         style = Paint.Style.FILL
         isAntiAlias = true
     }
