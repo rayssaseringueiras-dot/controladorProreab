@@ -2,6 +2,7 @@
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#DDE8F1">
@@ -10,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp">
-
 
         <!-- MENU -->
         <ImageView
@@ -21,15 +21,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-            <!-- TEXTO INCLINACAO -->
-
-
-        <!-- TEXTO ALTURA -->
+        <!-- TEXTO INCLINACAO -->
         <TextView
             android:id="@+id/txtInc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="68dp"
+            android:layout_marginStart="60dp"
             android:layout_marginTop="4dp"
             android:text="INCLINAÇÃO"
             android:textColor="#5A35FF"
@@ -38,91 +35,153 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnMenu" />
 
+        <!-- TEXTO ALTURA -->
         <TextView
-                android:id="@+id/txtAlt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ALTURA"
-                android:textStyle="bold"
-                android:textColor="#5A35FF"
-                android:textSize="22sp"
-                app:layout_constraintTop_toTopOf="@id/txtInc"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="70dp"/>
-
+            android:id="@+id/txtAlt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="92dp"
+            android:text="ALTURA"
+            android:textColor="#5A35FF"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/txtInc" />
 
         <!-- SLIDER INCLINAÇÃO -->
-
-        <!-- CENTRO -->
-
         <com.example.controladorproreab.ArcSliderView
             android:id="@+id/arcSlider"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="150dp"
+            android:layout_height="280dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtInc" />
 
-        <LinearLayout
-            android:id="@+id/painelCentro"
+        <!-- CENTRO -->
+
+        <!-- SLIDER ALTURA -->
+
+        <TextView
+            android:id="@+id/txtDire"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            app:layout_constraintTop_toTopOf="@id/arcSlider"
+            android:layout_marginStart="296dp"
+            android:layout_marginTop="28dp"
+            android:text="DIREÇÃO"
+            android:textColor="#5A35FF"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtInc" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/controleDirecional"
+            android:layout_width="240dp"
+            android:layout_height="240dp"
             app:layout_constraintBottom_toBottomOf="@id/arcSlider"
+            app:layout_constraintEnd_toStartOf="@id/verticalSlider"
+            app:layout_constraintHorizontal_bias="0.483"
             app:layout_constraintStart_toEndOf="@id/arcSlider"
-            app:layout_constraintEnd_toStartOf="@id/verticalSlider">
+            app:layout_constraintTop_toTopOf="@id/arcSlider"
+            app:layout_constraintVertical_bias="1.0">
 
             <ImageButton
-                android:id="@+id/btnSubir"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:id="@+id/btnCima"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/botao_borda"
+                android:contentDescription="Subir"
+                android:padding="14dp"
+                android:scaleType="centerInside"
                 android:src="@drawable/ic_arrow_up"
-                android:padding="16dp"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                android:id="@+id/btnDescer"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginTop="20dp"
+                android:id="@+id/btnEsquerda"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="4dp"
                 android:background="@drawable/botao_borda"
+                android:contentDescription="Esquerda"
+                android:padding="14dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_arrow_left"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnBaixo"
+                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnCima"
+                app:layout_constraintVertical_bias="0.2" />
+
+            <ImageButton
+                android:id="@+id/btnDireita"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/botao_borda"
+                android:contentDescription="Direita"
+                android:padding="14dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_arrow_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/btnBaixo"
+                app:layout_constraintTop_toBottomOf="@id/btnCima"
+                app:layout_constraintVertical_bias="0.2" />
+
+            <ImageButton
+                android:id="@+id/btnBaixo"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/botao_borda"
+                android:contentDescription="Descer"
+                android:padding="14dp"
+                android:scaleType="centerInside"
                 android:src="@drawable/ic_arrow_down"
-                android:padding="16dp"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnCima" />
 
             <Button
                 android:id="@+id/btnStop"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="16dp"
                 android:backgroundTint="#FF5757"
                 android:text="Parar"
                 android:textColor="@android:color/black"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnBaixo"
+                app:layout_constraintVertical_bias="1.0"
+                tools:layout_editor_absoluteX="70dp" />
 
-        </LinearLayout>
 
-        <!-- ALTURA -->
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <com.example.controladorproreab.VerticalSliderView
             android:id="@+id/verticalSlider"
-            android:layout_width="110dp"
+            android:layout_width="150dp"
             android:layout_height="280dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="56dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="60dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtAlt" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+</ScrollView>
 
-
-
-
-
-
-    <!--        <LinearLayout-->
+        <!-- bOTÕES ANTIGOS -->
+<!--        <LinearLayout-->
 <!--            android:layout_width="wrap_content"-->
 <!--            android:layout_height="wrap_content"-->
 <!--            android:orientation="horizontal"-->
