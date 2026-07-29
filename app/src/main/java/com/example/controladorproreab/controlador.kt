@@ -29,10 +29,10 @@ class ControladorActivity : AppCompatActivity() {
         setContentView(R.layout.activity_controlador)
 
         btnMenu = findViewById(R.id.btnMenu)
-//        btnStop = findViewById(R.id.btn_stop)
-        btnStopInclinação = findViewById(R.id.btn_stopInclinação)
+        btnStop = findViewById(R.id.btnStop)
         arcSlider = findViewById(R.id.arcSlider)
         verticalSlider = findViewById(R.id.verticalSlider)
+//        btnStopInclinação = findViewById(R.id.btn_stopInclinação)
 //        btnLiberarAltura = findViewById(R.id.btn_liberar_Altura)
 //        btnTravarAltura = findViewById(R.id.btn_travar_Altura)
 //        btnLiberarInclinacao = findViewById(R.id.btn_Liberar_Inclinação)
@@ -44,23 +44,31 @@ class ControladorActivity : AppCompatActivity() {
         btnMenu.setOnClickListener {
             MenuBottomSheet().show(supportFragmentManager, "menu")
         }
+        // BOTÃO DE STOP PARA PARAR EM CASO DE EMERGENCIA
+        btnStop.setOnClickListener {
+            BluetoothManager.send("p")
+        }
 
-//        btnTravarAltura.setOnClickListener {
-//            BluetoothManager.send("t")
+//        btnStopInclinação.setOnClickListener {
+//            BluetoothManager.send("s")
 //        }
 //
 //        btnLiberarAltura.setOnClickListener {
 //            BluetoothManager.send("l")
 //        }
 //
-//        btnTravarInclinacao.setOnClickListener {
-//            BluetoothManager.send("k")
+//        btnTravarAltura.setOnClickListener {
+//            BluetoothManager.send("t")
 //        }
 //
 //        btnLiberarInclinacao.setOnClickListener {
 //            BluetoothManager.send("j")
 //        }
-
+//
+//        btnTravarInclinacao.setOnClickListener {
+//            BluetoothManager.send("k")
+//        }
+//
 //        btnZ.setOnClickListener {
 //            BluetoothManager.send("z")
 //        }
@@ -68,16 +76,6 @@ class ControladorActivity : AppCompatActivity() {
 //        btnN.setOnClickListener {
 //            BluetoothManager.send("n")
 //        }
-//
-        // BOTÃO DE STOP PARA PARAR EM CASO DE EMERGENCIA
-        btnStop.setOnClickListener {
-            BluetoothManager.send("p")
-        }
-//
-//        btnStopInclinação.setOnClickListener {
-//            BluetoothManager.send("s")
-//        }
-
     }
 
     fun onAngleChanged(newAngle: Int) {
@@ -93,7 +91,7 @@ class ControladorActivity : AppCompatActivity() {
 
         val diferenca = newHeight - currentHeightFromESP
 
-        /* Esse código de thread serve para rodar a comunicação em segundo plano e não travar o app para o usuário.
+        /* Esse código de thread serve para rodar a comunicalão em segundo plano e não travar o app para o usuário.
         Ele recebe os dados em segundo plano */
         Thread {
 
@@ -141,11 +139,11 @@ class ControladorActivity : AppCompatActivity() {
             }
         }.start()
     }
+}
 
-
+// RELAÇÕES IMPORTANRTES:
 // Relação de envio de altura = 1 letra opara 1 giro / são 75 giros que corresponde a 75cm
 // Relação de envio de inclinação = 1 letra endia a açteração de 1 mm, são 100 mm para 90º
 // BTN_stop --> comando "S"
-}
 
 

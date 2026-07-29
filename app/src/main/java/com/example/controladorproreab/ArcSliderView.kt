@@ -38,7 +38,7 @@ class ArcSliderView(context: Context, attrs: AttributeSet?) : View(context, attr
         isAntiAlias = true
     }
 
-    private var progress = 1f // 1 = 90°, 0 = 0°
+    private var progress = 1f
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
@@ -68,7 +68,7 @@ class ArcSliderView(context: Context, attrs: AttributeSet?) : View(context, attr
 //        canvas.drawLine(x, y, x, botom, activePaint)
         canvas.drawCircle(x, y, 20f, thumbPaint)
 
-        // Textos fixos
+        // Texto
         canvas.drawText("90°", startX - 20, startY - 15, textPaint)
         canvas.drawText("0", endX - 5, endY + 45, textPaint)
 
@@ -96,10 +96,10 @@ class ArcSliderView(context: Context, attrs: AttributeSet?) : View(context, attr
 
         invalidate()
 
-        // Obtém o valor atual do ângulo
+
         val valorAtual = getAngleValue()
 
-        // Chama a função da ControladorActivity
+        // chama a ControladorActivity
         (context as? ControladorActivity)?.onAngleChanged(valorAtual)
 
         return true

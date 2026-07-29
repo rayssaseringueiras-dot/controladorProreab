@@ -43,11 +43,11 @@ object BluetoothManager {
                         name == "HC-06"
             } ?: bondedDevices.first()
 
-            disconnect() // Fecha conexão anterior, se existir
+            disconnect() // Fecha conexão anterior
 
-            adapter.cancelDiscovery() // Cancela descoberta antes de conectar
+            adapter.cancelDiscovery()
 
-            socket = device.createRfcommSocketToServiceRecord(UUID_SPP) // Tenta conectar usando o UUID padrão do Bluetooth clássico (SPP)
+            socket = device.createRfcommSocketToServiceRecord(UUID_SPP)
             socket?.connect()
 
             connectedDeviceName = device.name ?: "Dispositivo Bluetooth" // Salva o nome do dispositivo conectado
