@@ -7,15 +7,20 @@ import androidx.appcompat.app.AppCompatActivity
 
 class ControladorActivity : AppCompatActivity() {
 
+//        Atribuições de variáveis:
     lateinit var btnMenu: ImageView
     lateinit var btnStop: Button
-    lateinit var btnStopInclinação: Button
-    lateinit var btnLiberarAltura: Button
-    lateinit var btnTravarAltura: Button
-    lateinit var btnLiberarInclinacao: Button
-    lateinit var btnTravarInclinacao: Button
-    lateinit var btnZ: Button
-    lateinit var btnN: Button
+//    lateinit var btnStopInclinação: Button
+//    lateinit var btnLiberarAltura: Button
+//    lateinit var btnTravarAltura: Button
+//    lateinit var btnLiberarInclinacao: Button
+//    lateinit var btnTravarInclinacao: Button
+//    lateinit var btnZ: Button
+//    lateinit var btnN: Button
+    lateinit var btnCima: Button
+    lateinit var btnBaixo: Button
+    lateinit var btnEsquerda: Button
+    lateinit var btnDireita: Button
     lateinit var arcSlider: ArcSliderView
     lateinit var verticalSlider: VerticalSliderView
     private var lastAngle = 90
@@ -25,13 +30,19 @@ class ControladorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         pedirAlturaAtual()
-
         setContentView(R.layout.activity_controlador)
 
+//         Atribundo ID:
         btnMenu = findViewById(R.id.btnMenu)
         btnStop = findViewById(R.id.btnStop)
         arcSlider = findViewById(R.id.arcSlider)
         verticalSlider = findViewById(R.id.verticalSlider)
+//        Botões de direção:
+        btnCima = findViewById(R.id.btnCima)
+        btnBaixo = findViewById(R.id.btnBaixo)
+        btnEsquerda = findViewById(R.id.btnEsquerda)
+        btnDireita = findViewById(R.id.btnDireita)
+//        Botões de teste
 //        btnStopInclinação = findViewById(R.id.btn_stopInclinação)
 //        btnLiberarAltura = findViewById(R.id.btn_liberar_Altura)
 //        btnTravarAltura = findViewById(R.id.btn_travar_Altura)
@@ -39,6 +50,9 @@ class ControladorActivity : AppCompatActivity() {
 //        btnTravarInclinacao = findViewById(R.id.btn_travar_inclinação)
 //        btnZ = findViewById(R.id.btn_Z)
 //        btnN = findViewById(R.id.btn_N)
+
+
+//        Usagem das variáveis:
 
         // ESSA PARTE ABRE O MENU
         btnMenu.setOnClickListener {
@@ -48,7 +62,23 @@ class ControladorActivity : AppCompatActivity() {
         btnStop.setOnClickListener {
             BluetoothManager.send("p")
         }
+        // Direção:
+        btnCima.setOnClickListener {
+            BluetoothManager.send("")
+        }
 
+        btnBaixo.setOnClickListener {
+            BluetoothManager.send("")
+        }
+
+        btnEsquerda.setOnClickListener {
+            BluetoothManager.send("")
+        }
+
+        btnDireita.setOnClickListener {
+            BluetoothManager.send("")
+        }
+//        Botões de teste:
 //        btnStopInclinação.setOnClickListener {
 //            BluetoothManager.send("s")
 //        }

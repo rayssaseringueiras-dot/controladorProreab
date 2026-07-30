@@ -10,6 +10,14 @@ import kotlin.math.pow
 
 class ArcSliderView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
 
+    private val bgPaint = Paint().apply {
+        color = Color.LTGRAY
+        strokeWidth = 20f
+        style = Paint.Style.STROKE
+        strokeCap = Paint.Cap.ROUND
+        isAntiAlias = true
+    }
+
     private val arcPaint = Paint().apply {
         color = Color.parseColor("#4A4AE0")
         strokeWidth = 20f
@@ -18,8 +26,9 @@ class ArcSliderView(context: Context, attrs: AttributeSet?) : View(context, attr
         isAntiAlias = true
     }
 
+
     private val thumbPaint = Paint().apply {
-        color = Color.parseColor("#4A4AE0")
+        color = Color.BLUE
         style = Paint.Style.FILL
         isAntiAlias = true
     }
@@ -38,7 +47,7 @@ class ArcSliderView(context: Context, attrs: AttributeSet?) : View(context, attr
         isAntiAlias = true
     }
 
-    private var progress = 1f
+    private var progress = 0f
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
@@ -58,7 +67,19 @@ class ArcSliderView(context: Context, attrs: AttributeSet?) : View(context, attr
             endX, endY
         ) // Essa parte vai arrumar a curva
 
-        canvas.drawPath(path, arcPaint)
+        canvas.drawPath(path, bgPaint)
+        val measure = PathMeasure(path, false)
+
+        val activePath = Path()
+
+        measure.getSegment(
+            measure.length * (1f - progress),
+            measure.length,
+            activePath,
+            true
+        )
+
+        canvas.drawPath(activePath, arcPaint)
 
         val t = 1f - progress // Posição da bolinha na curva
 //        val botom = -40f

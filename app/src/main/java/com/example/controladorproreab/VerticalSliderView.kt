@@ -35,7 +35,7 @@ class VerticalSliderView(context: Context, attrs: AttributeSet?) : View(context,
         isAntiAlias = true
     }
 
-    private var progress = 0.33f
+    private var progress = 0f
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
@@ -54,7 +54,7 @@ class VerticalSliderView(context: Context, attrs: AttributeSet?) : View(context,
         canvas.drawText("120CM", x + 25, top + 10, textPaint)
         canvas.drawText("40CM", x + 25, bottom + 10, textPaint)
 
-        val currentHeight = (45 + (45 * progress)).toInt()
+        val currentHeight = (40 + (80 * progress)).toInt()
         canvas.drawText("${currentHeight}CM", x + 25, y + 10, textPaint)
     }
 
@@ -71,13 +71,14 @@ class VerticalSliderView(context: Context, attrs: AttributeSet?) : View(context,
         return true
     }
 
-    fun getHeightValue(): Int = (45 + (45 * progress)).toInt()
+    fun getHeightValue(): Int = (40 + (80 * progress)).toInt()
 
     fun setHeightValue(height: Int) {
 
-        val safeHeight = height.coerceIn(45, 90)
+        val safeHeight = height.coerceIn(40, 120)
 
-        progress = (safeHeight - 45) / 45f
+        progress = (safeHeight - 40) / 80f
+
 
         invalidate()
     }
