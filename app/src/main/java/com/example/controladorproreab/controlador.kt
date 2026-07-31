@@ -10,6 +10,7 @@ class ControladorActivity : AppCompatActivity() {
 //        Atribuições de variáveis:
     lateinit var btnMenu: ImageView
     lateinit var btnStop: Button
+    lateinit var btnEmergencia: Button
 //    lateinit var btnStopInclinação: Button
 //    lateinit var btnLiberarAltura: Button
 //    lateinit var btnTravarAltura: Button
@@ -35,6 +36,7 @@ class ControladorActivity : AppCompatActivity() {
 //         Atribundo ID:
         btnMenu = findViewById(R.id.btnMenu)
         btnStop = findViewById(R.id.btnStop)
+        btnEmergencia = findViewById(R.id.btnEmergencia)
         arcSlider = findViewById(R.id.arcSlider)
         verticalSlider = findViewById(R.id.verticalSlider)
 //        Botões de direção:
@@ -58,10 +60,17 @@ class ControladorActivity : AppCompatActivity() {
         btnMenu.setOnClickListener {
             MenuBottomSheet().show(supportFragmentManager, "menu")
         }
-        // BOTÃO DE STOP PARA PARAR EM CASO DE EMERGENCIA
+        // BOTÃO DE STOP PARA FREAR
         btnStop.setOnClickListener {
-            BluetoothManager.send("p")
+            BluetoothManager.send("f")
         }
+
+        btnEmergencia.setOnClickListener {
+            BluetoothManager.send("f") // frear
+            BluetoothManager.send("p") // parar inclinação
+            BluetoothManager.send("s") // parar altura
+        }
+
         // Direção:
         btnCima.setOnClickListener {
             BluetoothManager.send("")
