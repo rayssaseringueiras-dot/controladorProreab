@@ -73,19 +73,19 @@ class ControladorActivity : AppCompatActivity() {
 
         // Direção:
         btnCima.setOnClickListener {
-            BluetoothManager.send("")
+            BluetoothManager.send("FD")
         }
 
         btnBaixo.setOnClickListener {
-            BluetoothManager.send("")
+            BluetoothManager.send("FE")
         }
 
         btnEsquerda.setOnClickListener {
-            BluetoothManager.send("")
+            BluetoothManager.send("TE")
         }
 
         btnDireita.setOnClickListener {
-            BluetoothManager.send("")
+            BluetoothManager.send("TD")
         }
 //        Botões de teste:
 //        btnStopInclinação.setOnClickListener {
